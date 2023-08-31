@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.lordpine.apcc;
 
 import java.io.File;
 
