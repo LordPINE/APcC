@@ -3,7 +3,7 @@ package com.lordpine.apcc;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.emoniph.witchery.Witchery;
+import com.lordpine.apcc.witchery.WitcheryPlugin;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -19,6 +19,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
     acceptedMinecraftVersions = "[1.7.10]",
     dependencies = "required-after:Forge@[10.13.2.1291,);" + "required-after:Botania;"
         + "required-after:Witchery;"
+        + "before:WitcheryExtras;"
         + "required-after:Thaumcraft;")
 public class APolyChromaticCore {
 
@@ -32,6 +33,7 @@ public class APolyChromaticCore {
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
+        new WitcheryPlugin();
     }
 
     @Mod.EventHandler

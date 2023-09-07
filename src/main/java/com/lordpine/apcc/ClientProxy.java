@@ -1,9 +1,10 @@
 package com.lordpine.apcc;
 
+import net.minecraftforge.client.MinecraftForgeClient;
+
 import com.lordpine.apcc.items.APcCItems;
 
 import fox.spiteful.avaritia.render.FancyHaloRenderer;
-import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy extends CommonProxy {
 

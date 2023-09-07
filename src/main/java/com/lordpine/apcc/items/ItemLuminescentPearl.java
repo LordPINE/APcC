@@ -1,16 +1,17 @@
 package com.lordpine.apcc.items;
 
-import com.lordpine.apcc.Tags;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import fox.spiteful.avaritia.items.LudicrousItems;
-import fox.spiteful.avaritia.items.ItemResource;
-import fox.spiteful.avaritia.render.IHaloRenderItem;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+
+import com.lordpine.apcc.Tags;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import fox.spiteful.avaritia.items.ItemResource;
+import fox.spiteful.avaritia.items.LudicrousItems;
+import fox.spiteful.avaritia.render.IHaloRenderItem;
 
 public class ItemLuminescentPearl extends Item implements IHaloRenderItem {
 
@@ -48,7 +49,7 @@ public class ItemLuminescentPearl extends Item implements IHaloRenderItem {
     public int getHaloColour(ItemStack stack) {
         return 0xFF000000;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
