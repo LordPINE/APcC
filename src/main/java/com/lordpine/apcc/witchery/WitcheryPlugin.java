@@ -1,12 +1,19 @@
 package com.lordpine.apcc.witchery;
 
+import java.util.EnumSet;
+
 import net.minecraft.item.ItemStack;
 
 import com.emoniph.witchery.Witchery;
+import com.emoniph.witchery.ritual.Circle;
+import com.emoniph.witchery.ritual.RiteRegistry;
+import com.emoniph.witchery.ritual.RitualTraits;
+import com.emoniph.witchery.ritual.SacrificeItem;
+import com.emoniph.witchery.ritual.SacrificeMultiple;
+import com.emoniph.witchery.ritual.SacrificePower;
 import com.lordpine.apcc.items.APcCItems;
 
 import Reika.ChromatiCraft.Auxiliary.ChromaStacks;
-import Reika.ChromatiCraft.Registry.ChromaItems;
 import alkalus.main.api.RecipeManager;
 import alkalus.main.api.plugin.base.BasePluginWitchery;
 import thaumcraft.common.config.ConfigBlocks;
@@ -31,6 +38,7 @@ public class WitcheryPlugin extends BasePluginWitchery {
     public boolean init() {
         registerOvenRecipes();
         registerDistilleryRecipes();
+        registerRites();
         return true;
     }
 
@@ -61,10 +69,43 @@ public class WitcheryPlugin extends BasePluginWitchery {
 
     private void registerDistilleryRecipes() {
         // Chromatic Distillate
-        RecipeManager.Distillery.addRecipe(ChromaStacks.chromaDust, new ItemStack(APcCItems.material, 1,0), 3, new ItemStack(APcCItems.material, 1, 1), new ItemStack(APcCItems.material, 1, 1), Witchery.Items.GENERIC.itemWhiffOfMagic.createStack(), null);
+        RecipeManager.Distillery.addRecipe(
+            ChromaStacks.chromaDust,
+            new ItemStack(APcCItems.material, 1, 0),
+            3,
+            new ItemStack(APcCItems.material, 1, 1),
+            new ItemStack(APcCItems.material, 1, 1),
+            Witchery.Items.GENERIC.itemWhiffOfMagic.createStack(),
+            null);
 
         // Refined Corruption
-        RecipeManager.Distillery.addRecipe(Witchery.Items.GENERIC.itemMellifluousHunger.createStack(), ChromaStacks.voidmonsterEssence, 2, new ItemStack(APcCItems.material, 1, 2), new ItemStack(APcCItems.material, 1, 2), Witchery.Items.GENERIC.itemRefinedEvil.createStack(), null);
+        RecipeManager.Distillery.addRecipe(
+            Witchery.Items.GENERIC.itemMellifluousHunger.createStack(),
+            ChromaStacks.voidmonsterEssence,
+            2,
+            new ItemStack(APcCItems.material, 1, 2),
+            new ItemStack(APcCItems.material, 1, 2),
+            Witchery.Items.GENERIC.itemRefinedEvil.createStack(),
+            null);
+    }
+
+    private void registerRites() {
+        int lastID = RecipeManager.RitesAndRituals.getLastUsedRitualID();
+        RecipeManager.RitesAndRituals.add(
+            ++lastID,
+            lastID + 100,
+            new VoidMonsterRite(),
+            new SacrificeMultiple(
+                new SacrificeItem(
+                    new ItemStack(APcCItems.material, 1, 2),
+                    ChromaStacks.voidCoreHigh,
+                    ChromaStacks.spaceDust),
+                new SacrificePower(8000, 20)),
+            EnumSet.noneOf(RitualTraits.class),
+            new Circle[] { new Circle(0, 16, 0), new Circle(0, 28, 0), new Circle(0, 40, 0) });
+        RiteRegistry.instance()
+            .getRitual((byte) lastID)
+            .setUnlocalizedName("apcc.rite.summon_voidmonster");
     }
 
 }

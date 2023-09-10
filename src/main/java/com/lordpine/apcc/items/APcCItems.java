@@ -6,7 +6,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class APcCItems {
 
-    public static final String[] GENERIC_ITEM_NAMES = {"chromatic_essence", "chromatic_distillate", "refined_corruption"};
+    public static final String[] GENERIC_ITEM_NAMES = { "chromatic_essence", "chromatic_distillate",
+        "refined_corruption" };
     public static Item luminescent_pearl;
     public static Item material;
 

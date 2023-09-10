@@ -24,20 +24,18 @@ public class ItemGeneric extends Item {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
         icons = new IIcon[types];
-        for (int i = 0; i < icons.length; i++) icons[i] = iconRegister.registerIcon(
-            Tags.MODID + ":"
-                + APcCItems.GENERIC_ITEM_NAMES[i]);
+        for (int i = 0; i < icons.length; i++)
+            icons[i] = iconRegister.registerIcon(Tags.MODID + ":" + APcCItems.GENERIC_ITEM_NAMES[i]);
     }
 
-    
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamage(int par1) {
-		return icons[Math.min(icons.length - 1, par1)];
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamage(int par1) {
+        return icons[Math.min(icons.length - 1, par1)];
+    }
 
     @Override
-	public String getUnlocalizedName(ItemStack par1ItemStack) {
-		return "item." + APcCItems.GENERIC_ITEM_NAMES[Math.min(types - 1, par1ItemStack.getItemDamage())];
-	}
+    public String getUnlocalizedName(ItemStack par1ItemStack) {
+        return "item." + APcCItems.GENERIC_ITEM_NAMES[Math.min(types - 1, par1ItemStack.getItemDamage())];
+    }
 }
