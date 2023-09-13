@@ -4,6 +4,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 
 import com.lordpine.apcc.items.APcCItems;
 
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import fox.spiteful.avaritia.render.FancyHaloRenderer;
 
 public class ClientProxy extends CommonProxy {
@@ -13,5 +14,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void loadSpecialRendering() {
         MinecraftForgeClient.registerItemRenderer(APcCItems.luminescent_pearl, new FancyHaloRenderer());
+        MinecraftForgeClient.registerItemRenderer(APcCItems.ultimate_essence, new FancyHaloRenderer());
     }
+
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {}
 }

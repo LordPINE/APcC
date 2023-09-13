@@ -1,5 +1,24 @@
 item.chromatic_essence.name=Chromatic Essence
-item.chromatic_distillate.name=Chromatic Distillate
+item.chromatic_distillate.name=Chromatic Distillate7
 item.refined_corruption.name=Refined Corruption
 
 apcc.rite.summon_voidmonster=Rite of §kVoid's Corruption§r
+
+item.ultimate_essence_kuro.name=§0§lKuro Ultimate Essence§r
+item.ultimate_essence_karmir.name=§c§lKarmir Ultimate Essence§r
+item.ultimate_essence_kijani.name=§2§lKijani Ultimate Essence§r
+item.ultimate_essence_ruskea.name=§4§lRuskea Ultimate Essence§r
+item.ultimate_essence_nila.name=§1§lNila Ultimate Essence§r
+item.ultimate_essence_zambarau.name=§5§lZambarau Ultimate Essence§r
+item.ultimate_essence_vadali.name=§3§lVadali Ultimate Essence§r
+item.ultimate_essence_argia.name=§7§lArgia Ultimate Essence§r
+item.ultimate_essence_ykri.name=§8§lYkri Ultimate Essence§r
+item.ultimate_essence_ruzova.name=§d§lRuzova Ultimate Essence§r
+item.ultimate_essence_asveste.name=§a§lAsveste Ultimate Essence§r
+item.ultimate_essence_kitrino.name=§e§lKitrino Ultimate Essence§r
+item.ultimate_essence_galazio.name=§b§lGalazio Ultimate Essence§r
+item.ultimate_essence_kurauri.name=§d§lKurauri Ultimate Essence§r
+item.ultimate_essence_portokali.name=§6§lPortokali Ultimate Essence§r
+item.ultimate_essence_tahara.name=§f§lTahara Ultimate Essence§r
+
+item.luminescent_pearl.name=Luminescent Pearl
