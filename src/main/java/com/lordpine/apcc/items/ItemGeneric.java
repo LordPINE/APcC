@@ -1,9 +1,12 @@
 package com.lordpine.apcc.items;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+
+import java.util.List;
 
 import com.lordpine.apcc.Tags;
 
@@ -37,5 +40,14 @@ public class ItemGeneric extends Item {
     @Override
     public String getUnlocalizedName(ItemStack par1ItemStack) {
         return "item." + APcCItems.GENERIC_ITEM_NAMES[Math.min(types - 1, par1ItemStack.getItemDamage())];
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, List list) {
+        for (int j = 0; j < types; ++j) {
+            list.add(new ItemStack(item, 1, j));
+        }
     }
 }

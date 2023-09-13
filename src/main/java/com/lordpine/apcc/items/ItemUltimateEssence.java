@@ -1,9 +1,12 @@
 package com.lordpine.apcc.items;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+
+import java.util.List;
 
 import com.lordpine.apcc.Tags;
 
@@ -21,6 +24,11 @@ public class ItemUltimateEssence extends Item implements IHaloRenderItem {
     public ItemUltimateEssence() {
         this.setUnlocalizedName("ultimate_essence");
         this.setHasSubtypes(true);
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack par1ItemStack) {
+        return "item." + APcCItems.ULTIMATE_ESSENCE_NAMES[Math.min(types - 1, par1ItemStack.getItemDamage())];
     }
 
     @Override
@@ -65,5 +73,14 @@ public class ItemUltimateEssence extends Item implements IHaloRenderItem {
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int par1) {
         return icons[Math.min(icons.length - 1, par1)];
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, List list) {
+        for (int j = 0; j < types; ++j) {
+            list.add(new ItemStack(item, 1, j));
+        }
     }
 }
