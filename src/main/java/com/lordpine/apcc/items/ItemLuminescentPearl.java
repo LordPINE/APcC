@@ -17,7 +17,6 @@ import fox.spiteful.avaritia.render.IHaloRenderItem;
 public class ItemLuminescentPearl extends Item implements IHaloRenderItem {
 
     public ItemLuminescentPearl() {
-        this.setMaxDamage(0);
         this.setUnlocalizedName("luminescent_pearl");
     }
 

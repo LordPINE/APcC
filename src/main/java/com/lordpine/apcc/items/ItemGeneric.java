@@ -16,7 +16,6 @@ public class ItemGeneric extends Item {
     IIcon[] icons;
 
     public ItemGeneric(String unlocalizedName) {
-        this.setMaxDamage(15);
         this.setUnlocalizedName(unlocalizedName);
         this.setHasSubtypes(true);
     }

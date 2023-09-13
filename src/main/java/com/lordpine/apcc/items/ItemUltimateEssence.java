@@ -19,7 +19,6 @@ public class ItemUltimateEssence extends Item implements IHaloRenderItem {
     IIcon[] icons;
 
     public ItemUltimateEssence() {
-        this.setMaxDamage(15);
         this.setUnlocalizedName("ultimate_essence");
         this.setHasSubtypes(true);
     }
