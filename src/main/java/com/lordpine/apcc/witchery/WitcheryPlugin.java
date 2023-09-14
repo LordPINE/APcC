@@ -5,12 +5,14 @@ import java.util.EnumSet;
 import net.minecraft.item.ItemStack;
 
 import com.emoniph.witchery.Witchery;
+import com.emoniph.witchery.infusion.Infusion;
 import com.emoniph.witchery.ritual.Circle;
 import com.emoniph.witchery.ritual.RiteRegistry;
 import com.emoniph.witchery.ritual.RitualTraits;
 import com.emoniph.witchery.ritual.SacrificeItem;
 import com.emoniph.witchery.ritual.SacrificeMultiple;
 import com.emoniph.witchery.ritual.SacrificePower;
+import com.emoniph.witchery.ritual.rites.RiteInfusePlayers;
 import com.lordpine.apcc.items.APcCItems;
 
 import Reika.ChromatiCraft.Auxiliary.ChromaStacks;
@@ -19,6 +21,8 @@ import alkalus.main.api.plugin.base.BasePluginWitchery;
 import thaumcraft.common.config.ConfigBlocks;
 
 public class WitcheryPlugin extends BasePluginWitchery {
+
+    Infusion infusionCorrupted;
 
     public WitcheryPlugin() {
         super(new LoadPhase[] { LoadPhase.INIT, LoadPhase.POSTINIT });
@@ -106,6 +110,18 @@ public class WitcheryPlugin extends BasePluginWitchery {
         RiteRegistry.instance()
             .getRitual((byte) lastID)
             .setUnlocalizedName("apcc.rite.summon_voidmonster");
+        this.infusionCorrupted = new CorruptedInfusion(5);
+        RecipeManager.Infusions.add(infusionCorrupted);
+        RecipeManager.RitesAndRituals.add(
+            ++lastID,
+            lastID + 100,
+            new RiteInfusePlayers(this.infusionCorrupted, 200, 4),
+            new SacrificeMultiple(new SacrificeItem(new ItemStack(APcCItems.material, 1, 4)), new SacrificePower(4000, 20)),
+            EnumSet.noneOf(RitualTraits.class),
+            new Circle[] { new Circle(0, 16, 0), new Circle(0, 28, 0) });
+        RiteRegistry.instance()
+            .getRitual((byte) lastID)
+            .setUnlocalizedName("apcc.rite.infusion_corrupted");
     }
 
 }

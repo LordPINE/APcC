@@ -7,7 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class APcCItems {
 
     public static final String[] GENERIC_ITEM_NAMES = { "chromatic_essence", "chromatic_distillate",
-        "refined_corruption" };
+        "refined_corruption", "corrupted_infusion" };
     public static final String[] ULTIMATE_ESSENCE_NAMES = { "ultimate_essence_kuro", "ultimate_essence_karmir",
         "ultimate_essence_kijani", "ultimate_essence_ruskea", "ultimate_essence_nila", "ultimate_essence_zambarau",
         "ultimate_essence_vadali", "ultimate_essence_argia", "ultimate_essence_ykri", "ultimate_essence_ruzova",
