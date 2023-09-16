@@ -71,23 +71,32 @@ public class LuminescentPearlRecipe extends PylonCastingRecipe {
         int x = te.xCoord;
         int y = te.yCoord;
         int z = te.zCoord;
-        double px = te.xCoord + te.getRandom()
-            .nextDouble();
-        double pz = te.zCoord + te.getRandom()
-            .nextDouble();
-        double vy = ReikaRandomHelper.getRandomPlusMinus(0, 0.0625);
-        double vx = ReikaRandomHelper.getRandomPlusMinus(0, 0.0625);
-        double vz = ReikaRandomHelper.getRandomPlusMinus(0, 0.0625);
         int t = dur - tick;
+        doPedestalParticles(x, y, z, te);
+        if (t % 18 == 0) {
+            doTableParticles(x, y, z, te);
+            if (te.getRandom()
+                .nextDouble() < 0.0625) {
+                doRuneParticleBurst(x, y, z, te);
+            }
+        }
+        if (t % 200 == 0) {
+            ReikaSoundHelper
+                .playClientSound(ChromaSounds.PYLONBOOSTRITUAL, x + 0.5, y + 0.5, z + 0.5, 0.75F, 1.0F, false);
+        }
+    }
+
+    private void doPedestalParticles(int x, int y, int z, TileEntityCastingTable te) {
         for (int i = 0; i < 16; i++) {
             CrystalElement e = CrystalElement.elements[i];
             for (int j = 0; j < 3; j++) {
-                px = x + te.getRandom()
+                double px = x + te.getRandom()
                     .nextDouble() + pedestalCoords[i][0];
-                pz = z + te.getRandom()
+                double pz = z + te.getRandom()
                     .nextDouble() + pedestalCoords[i][1];
-                vx = ReikaRandomHelper.getRandomPlusMinus(0, 0.0625);
-                vz = ReikaRandomHelper.getRandomPlusMinus(0, 0.0625);
+                double vx = ReikaRandomHelper.getRandomPlusMinus(0, 0.0625);
+                double vy = ReikaRandomHelper.getRandomPlusMinus(0, 0.0625);
+                double vz = ReikaRandomHelper.getRandomPlusMinus(0, 0.0625);
                 float g = (float) ReikaRandomHelper.getRandomPlusMinus(0.125, 0.0625);
                 int l = 20;
                 float s = (float) ReikaRandomHelper.getRandomPlusMinus(2F, 1F);
@@ -97,49 +106,47 @@ public class LuminescentPearlRecipe extends PylonCastingRecipe {
                 Minecraft.getMinecraft().effectRenderer.addEffect(fx);
             }
         }
-        if (t % 18 == 0) {
-            ElementTagCompound tag = ElementTagCompound.getUniformTag(1);
-            WeightedRandom<CrystalElement> w = tag.asWeightedRandom();
-            for (int i = 0; i < 32; i++) {
-                CrystalElement e = w.getRandomEntry();
-                double ang = te.getRandom()
-                    .nextDouble() * 360;
-                double v = 0.125;
-                vx = v * Math.cos(Math.toRadians(ang));
-                vy = ReikaRandomHelper.getRandomPlusMinus(v, v);
-                vz = v * Math.sin(Math.toRadians(ang));
-                int c = ReikaColorAPI.mixColors(e.getColor(), 0xffffff, 0.5F);
-                EntityFX fx = new EntitySparkleFX(te.getWorldObj(), x + 0.5, y + 0.5, z + 0.5, vx, vy, vz).setColor(c)
-                    .setScale(1);
-                fx.noClip = true;
-                Minecraft.getMinecraft().effectRenderer.addEffect(fx);
-            }
-            if (te.getRandom()
-                .nextDouble() < 0.0625) {
-                ReikaSoundHelper.playClientSound(ChromaSounds.PYLONFLASH, x + 0.5, y + 0.5, z + 0.5, 1.0F, 1.0F, false);
-                CrystalElement e = w.getRandomEntry();
-                for (int i = 0; i < 32; i++) {
-                    px = x + te.getRandom()
-                        .nextDouble() + pedestalCoords[e.ordinal()][0];
-                    pz = z + te.getRandom()
-                        .nextDouble() + pedestalCoords[e.ordinal()][1];
-                    vx = ReikaRandomHelper.getRandomPlusMinus(0, 0.03125);
-                    vy = ReikaRandomHelper.getRandomPlusMinus(0.125, 0.03125);
-                    vz = ReikaRandomHelper.getRandomPlusMinus(0, 0.03125);
-                    float g = (float) ReikaRandomHelper.getRandomPlusMinus(0.125, 0.0625);
-                    int l = 120;
-                    float s = (float) ReikaRandomHelper.getRandomPlusMinus(3F, 2F);
-                    EntityFX fx = new EntityRuneFX(te.getWorldObj(), px, te.yCoord + 2, pz, vx, vy, vz, e).setScale(s)
-                        .setLife(l)
-                        .setGravity(g);
-                    Minecraft.getMinecraft().effectRenderer.addEffect(fx);
-                }
-            }
-        }
-        if (t % 200 == 0) {
-            ReikaSoundHelper
-                .playClientSound(ChromaSounds.PYLONBOOSTRITUAL, x + 0.5, y + 0.5, z + 0.5, 0.75F, 1.0F, false);
+    }
+
+    private void doTableParticles(int x, int y, int z, TileEntityCastingTable te) {
+        ElementTagCompound tag = ElementTagCompound.getUniformTag(1);
+        WeightedRandom<CrystalElement> w = tag.asWeightedRandom();
+        for (int i = 0; i < 32; i++) {
+            CrystalElement e = w.getRandomEntry();
+            double ang = te.getRandom()
+                .nextDouble() * 360;
+            double v = 0.125;
+            double vx = v * Math.cos(Math.toRadians(ang));
+            double vy = ReikaRandomHelper.getRandomPlusMinus(v, v);
+            double vz = v * Math.sin(Math.toRadians(ang));
+            int c = ReikaColorAPI.mixColors(e.getColor(), 0xffffff, 0.5F);
+            EntityFX fx = new EntitySparkleFX(te.getWorldObj(), x + 0.5, y + 0.5, z + 0.5, vx, vy, vz).setColor(c)
+                .setScale(1);
+            fx.noClip = true;
+            Minecraft.getMinecraft().effectRenderer.addEffect(fx);
         }
     }
 
+    private void doRuneParticleBurst(int x, int y, int z, TileEntityCastingTable te) {
+        ReikaSoundHelper.playClientSound(ChromaSounds.PYLONFLASH, x + 0.5, y + 0.5, z + 0.5, 1.0F, 1.0F, false);
+        ElementTagCompound tag = ElementTagCompound.getUniformTag(1);
+        WeightedRandom<CrystalElement> w = tag.asWeightedRandom();
+        CrystalElement e = w.getRandomEntry();
+        for (int i = 0; i < 32; i++) {
+            double px = x + te.getRandom()
+                .nextDouble() + pedestalCoords[e.ordinal()][0];
+            double pz = z + te.getRandom()
+                .nextDouble() + pedestalCoords[e.ordinal()][1];
+            double vx = ReikaRandomHelper.getRandomPlusMinus(0, 0.03125);
+            double vy = ReikaRandomHelper.getRandomPlusMinus(0.125, 0.03125);
+            double vz = ReikaRandomHelper.getRandomPlusMinus(0, 0.03125);
+            float g = (float) ReikaRandomHelper.getRandomPlusMinus(0.125, 0.0625);
+            int l = 120;
+            float s = (float) ReikaRandomHelper.getRandomPlusMinus(3F, 2F);
+            EntityFX fx = new EntityRuneFX(te.getWorldObj(), px, te.yCoord + 2, pz, vx, vy, vz, e).setScale(s)
+                .setLife(l)
+                .setGravity(g);
+            Minecraft.getMinecraft().effectRenderer.addEffect(fx);
+        }
+    }
 }
