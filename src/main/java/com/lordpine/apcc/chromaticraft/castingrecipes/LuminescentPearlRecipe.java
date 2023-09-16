@@ -6,13 +6,13 @@ import net.minecraft.item.ItemStack;
 
 import com.lordpine.apcc.items.APcCItems;
 
-import Reika.ChromatiCraft.Auxiliary.ChromaStacks;
 import Reika.ChromatiCraft.Auxiliary.RecipeManagers.CastingRecipe.PylonCastingRecipe;
 import Reika.ChromatiCraft.Magic.ElementTagCompound;
 import Reika.ChromatiCraft.Registry.ChromaItems;
 import Reika.ChromatiCraft.Registry.ChromaSounds;
 import Reika.ChromatiCraft.Registry.CrystalElement;
 import Reika.ChromatiCraft.Render.Particle.EntityCCBlurFX;
+import Reika.ChromatiCraft.Render.Particle.EntityRuneFX;
 import Reika.ChromatiCraft.Render.Particle.EntitySparkleFX;
 import Reika.ChromatiCraft.TileEntity.Recipe.TileEntityCastingTable;
 import Reika.DragonAPI.Instantiable.Data.WeightedRandom;
@@ -40,16 +40,16 @@ public class LuminescentPearlRecipe extends PylonCastingRecipe {
                 pedestalCoords[i][1]);
         }
 
-		// Geode Gems
-		this.addAuxItem(new ItemStack(ChromaItems.DIMGEN.getItemInstance(), 1, 5), 0, -2);
-		this.addAuxItem(new ItemStack(ChromaItems.DIMGEN.getItemInstance(), 1, 5), 2, 0);
-		this.addAuxItem(new ItemStack(ChromaItems.DIMGEN.getItemInstance(), 1, 5), -2, 0);
-		this.addAuxItem(new ItemStack(ChromaItems.DIMGEN.getItemInstance(), 1, 5), 0, 2);
+        // Geode Gems
+        this.addAuxItem(new ItemStack(ChromaItems.DIMGEN.getItemInstance(), 1, 5), 0, -2);
+        this.addAuxItem(new ItemStack(ChromaItems.DIMGEN.getItemInstance(), 1, 5), 2, 0);
+        this.addAuxItem(new ItemStack(ChromaItems.DIMGEN.getItemInstance(), 1, 5), -2, 0);
+        this.addAuxItem(new ItemStack(ChromaItems.DIMGEN.getItemInstance(), 1, 5), 0, 2);
 
-		this.addAuxItem(new ItemStack(APcCItems.material, 1, 5), -2, -2);
-		this.addAuxItem(new ItemStack(APcCItems.material, 1, 5), 2, -2);
-		this.addAuxItem(new ItemStack(APcCItems.material, 1, 5), -2, 2);
-		this.addAuxItem(new ItemStack(APcCItems.material, 1, 5), 2, 2);
+        this.addAuxItem(new ItemStack(APcCItems.material, 1, 4), -2, -2);
+        this.addAuxItem(new ItemStack(APcCItems.material, 1, 4), 2, -2);
+        this.addAuxItem(new ItemStack(APcCItems.material, 1, 4), -2, 2);
+        this.addAuxItem(new ItemStack(APcCItems.material, 1, 4), 2, 2);
     }
 
     @Override
@@ -82,23 +82,22 @@ public class LuminescentPearlRecipe extends PylonCastingRecipe {
         for (int i = 0; i < 16; i++) {
             CrystalElement e = CrystalElement.elements[i];
             for (int j = 0; j < 3; j++) {
-                px = te.xCoord + te.getRandom()
+                px = x + te.getRandom()
                     .nextDouble() + pedestalCoords[i][0];
-                pz = te.zCoord + te.getRandom()
+                pz = z + te.getRandom()
                     .nextDouble() + pedestalCoords[i][1];
                 vx = ReikaRandomHelper.getRandomPlusMinus(0, 0.0625);
                 vz = ReikaRandomHelper.getRandomPlusMinus(0, 0.0625);
                 float g = (float) ReikaRandomHelper.getRandomPlusMinus(0.125, 0.0625);
                 int l = 20;
                 float s = (float) ReikaRandomHelper.getRandomPlusMinus(2F, 1F);
-                EntityFX fx = new EntityCCBlurFX(e, te.getWorldObj(), px, te.yCoord + 2, pz, vx, vy, vz).setScale(s)
+                EntityFX fx = new EntityCCBlurFX(e, te.getWorldObj(), px, y + 2, pz, vx, vy, vz).setScale(s)
                     .setLife(l)
                     .setGravity(g);
                 Minecraft.getMinecraft().effectRenderer.addEffect(fx);
             }
         }
         if (t % 18 == 0) {
-
             ElementTagCompound tag = ElementTagCompound.getUniformTag(1);
             WeightedRandom<CrystalElement> w = tag.asWeightedRandom();
             for (int i = 0; i < 32; i++) {
@@ -114,6 +113,27 @@ public class LuminescentPearlRecipe extends PylonCastingRecipe {
                     .setScale(1);
                 fx.noClip = true;
                 Minecraft.getMinecraft().effectRenderer.addEffect(fx);
+            }
+            if (te.getRandom()
+                .nextDouble() < 0.0625) {
+                ReikaSoundHelper.playClientSound(ChromaSounds.PYLONFLASH, x + 0.5, y + 0.5, z + 0.5, 1.0F, 1.0F, false);
+                CrystalElement e = w.getRandomEntry();
+                for (int i = 0; i < 32; i++) {
+                    px = x + te.getRandom()
+                        .nextDouble() + pedestalCoords[e.ordinal()][0];
+                    pz = z + te.getRandom()
+                        .nextDouble() + pedestalCoords[e.ordinal()][1];
+                    vx = ReikaRandomHelper.getRandomPlusMinus(0, 0.03125);
+                    vy = ReikaRandomHelper.getRandomPlusMinus(0.125, 0.03125);
+                    vz = ReikaRandomHelper.getRandomPlusMinus(0, 0.03125);
+                    float g = (float) ReikaRandomHelper.getRandomPlusMinus(0.125, 0.0625);
+                    int l = 120;
+                    float s = (float) ReikaRandomHelper.getRandomPlusMinus(3F, 2F);
+                    EntityFX fx = new EntityRuneFX(te.getWorldObj(), px, te.yCoord + 2, pz, vx, vy, vz, e).setScale(s)
+                        .setLife(l)
+                        .setGravity(g);
+                    Minecraft.getMinecraft().effectRenderer.addEffect(fx);
+                }
             }
         }
         if (t % 200 == 0) {
