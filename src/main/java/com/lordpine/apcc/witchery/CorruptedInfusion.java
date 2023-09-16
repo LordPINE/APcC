@@ -38,9 +38,9 @@ public class CorruptedInfusion extends Infusion {
                 double dx = x - entity.posX;
                 double dy = y - entity.posY;
                 double dz = z - entity.posZ;
-                entity.motionX += Math.signum(dx)*(1/(Math.pow(dx,2)+2.0F));
-                entity.motionY += Math.signum(dy)*(1/(Math.pow(dy,2)+2.0F));
-                entity.motionZ += Math.signum(dz)*(1/(Math.pow(dz,2)+2.0F));
+                entity.motionX += Math.signum(dx) * (1 / (Math.pow(dx, 2) + 2.0F));
+                entity.motionY += Math.signum(dy) * (1 / (Math.pow(dy, 2) + 2.0F));
+                entity.motionZ += Math.signum(dz) * (1 / (Math.pow(dz, 2) + 2.0F));
                 entity.attackEntityFrom(new VoidMonsterDamage(null), 1.0F);
             }
         }

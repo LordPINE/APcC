@@ -3,6 +3,7 @@ package com.lordpine.apcc;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.lordpine.apcc.chromaticraft.ChromaticRecipes;
 import com.lordpine.apcc.witchery.WitcheryPlugin;
 
 import cpw.mods.fml.common.Mod;
@@ -47,6 +48,7 @@ public class APolyChromaticCore {
     // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
+        ChromaticRecipes.addCastingRecipes();
     }
 
     @Mod.EventHandler
