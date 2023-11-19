@@ -62,7 +62,8 @@ public class UltimateEssenceRecipe extends PylonCastingRecipe {
         for (int i = 0; i < element_items.size(); i++) {
             if (element_items.get(i) != null) {
                 this.addAuxItem(
-                    element_items.get(i).copy(),
+                    element_items.get(i)
+                        .copy(),
                     element_specific_item_positions[i][0],
                     element_specific_item_positions[i][1]);
             }
