@@ -12,8 +12,11 @@ import com.lordpine.apcc.Tags;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fox.spiteful.avaritia.items.ItemResource;
+import fox.spiteful.avaritia.items.LudicrousItems;
+import fox.spiteful.avaritia.render.IHaloRenderItem;
 
-public class ItemGeneric extends Item {
+public class ItemGeneric extends Item implements IHaloRenderItem {
 
     final int types = APcCItems.GENERIC_ITEM_NAMES.length;
     IIcon[] icons;
@@ -49,5 +52,35 @@ public class ItemGeneric extends Item {
         for (int j = 0; j < types; ++j) {
             list.add(new ItemStack(item, 1, j));
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean drawHalo(ItemStack stack) {
+        return (stack.getItemDamage() == 20);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getHaloTexture(ItemStack stack) {
+        return ((ItemResource) LudicrousItems.resource).halo[0];
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getHaloSize(ItemStack stack) {
+        return 8;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean drawPulseEffect(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getHaloColour(ItemStack stack) {
+        return 0x33FCFC3A;
     }
 }

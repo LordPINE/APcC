@@ -13,6 +13,7 @@ public class ClientProxy extends CommonProxy {
     // Don't forget to call the super methods as well.
     @Override
     public void loadSpecialRendering() {
+        MinecraftForgeClient.registerItemRenderer(APcCItems.material, new FancyHaloRenderer());
         MinecraftForgeClient.registerItemRenderer(APcCItems.luminescent_pearl, new FancyHaloRenderer());
         MinecraftForgeClient.registerItemRenderer(APcCItems.ultimate_essence, new FancyHaloRenderer());
     }
