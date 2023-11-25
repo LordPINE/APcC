@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 
@@ -46,6 +47,11 @@ public final class APcCEventHandler {
                                 if (entity2 instanceof EntityItem) {
                                     EntityItem item = (EntityItem) entity2;
                                     if (matchesId(item, "arsmagica2", "flickerJar")) {
+                                        event.world.setBlock(
+                                            (int) Math.floor(entity.posX),
+                                            (int) Math.floor(entity.posY),
+                                            (int) Math.floor(entity.posZ),
+                                            Blocks.air);
                                         item.setEntityItemStack(new ItemStack(APcCItems.material, 1, 21));
                                     }
                                 }
