@@ -86,6 +86,7 @@ public class LuminescentPearlRecipe extends PylonCastingRecipe {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private void doPedestalParticles(int x, int y, int z, TileEntityCastingTable te) {
         for (int i = 0; i < 16; i++) {
             CrystalElement e = CrystalElement.elements[i];
@@ -108,6 +109,7 @@ public class LuminescentPearlRecipe extends PylonCastingRecipe {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private void doTableParticles(int x, int y, int z, TileEntityCastingTable te) {
         ElementTagCompound tag = ElementTagCompound.getUniformTag(1);
         WeightedRandom<CrystalElement> w = tag.asWeightedRandom();
@@ -127,6 +129,7 @@ public class LuminescentPearlRecipe extends PylonCastingRecipe {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private void doRuneParticleBurst(int x, int y, int z, TileEntityCastingTable te) {
         ReikaSoundHelper.playClientSound(ChromaSounds.PYLONFLASH, x + 0.5, y + 0.5, z + 0.5, 1.0F, 1.0F, false);
         ElementTagCompound tag = ElementTagCompound.getUniformTag(1);

@@ -99,6 +99,7 @@ public class UltimateEssenceRecipe extends PylonCastingRecipe {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private void doRunes(TileEntityCastingTable te, int x, int y, int z) {
         for (int j = 0; j < 3; j++) {
             double px = ReikaRandomHelper.getRandomPlusMinus(x + 0.5, 6);
@@ -117,6 +118,7 @@ public class UltimateEssenceRecipe extends PylonCastingRecipe {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private void doTableParticles(int x, int y, int z, TileEntityCastingTable te) {
         for (int i = 0; i < 32; i++) {
             double ang = te.getRandom()
