@@ -128,7 +128,7 @@ public class WitcheryPlugin extends BasePluginWitchery {
             lastID + 100,
             new RiteInfusePlayers(this.infusionCorrupted, 200, 4),
             new SacrificeMultiple(
-                new SacrificeItem(new ItemStack(APcCItems.material, 1, 4)),
+                new SacrificeItem(new ItemStack(APcCItems.material, 1, 3)),
                 new SacrificePower(4000, 20)),
             EnumSet.noneOf(RitualTraits.class),
             new Circle[] { new Circle(0, 16, 0), new Circle(0, 28, 0) });
