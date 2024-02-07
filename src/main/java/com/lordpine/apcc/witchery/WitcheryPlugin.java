@@ -16,6 +16,7 @@ import com.emoniph.witchery.ritual.rites.RiteInfusePlayers;
 import com.lordpine.apcc.items.APcCItems;
 
 import Reika.ChromatiCraft.Auxiliary.ChromaStacks;
+import Reika.ChromatiCraft.Registry.ChromaBlocks;
 import alkalus.main.api.RecipeManager;
 import alkalus.main.api.plugin.base.BasePluginWitchery;
 import thaumcraft.common.config.ConfigBlocks;
@@ -68,6 +69,16 @@ public class WitcheryPlugin extends BasePluginWitchery {
             Witchery.Items.GENERIC.itemAshWood.createStack(),
             1,
             Witchery.Items.GENERIC.itemWhiffOfMagic.createStack(),
+            1);
+
+        // Rainbow Sapling -> Chromatic Essence
+        RecipeManager.WitchesOven.addRecipe(
+            new ItemStack(ChromaBlocks.RAINBOWSAPLING.getItem(), 1),
+            null,
+            1,
+            Witchery.Items.GENERIC.itemAshWood.createStack(),
+            1,
+            new ItemStack(APcCItems.material, 1, 0),
             1);
     }
 
