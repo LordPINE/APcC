@@ -49,8 +49,8 @@ public class CorruptedInfusion extends Infusion {
         double z = player.posZ;
         if (!world.isRemote) {
             List<EntityLiving> entitiesWithinAABB = world.getEntitiesWithinAABB(
-                    EntityLiving.class,
-                    AxisAlignedBB.getBoundingBox(x - 5.0D, y - 5.0D, z - 5.0D, x + 5.0D, y + 5.0D, z + 5.0D));
+                EntityLiving.class,
+                AxisAlignedBB.getBoundingBox(x - 5.0D, y - 5.0D, z - 5.0D, x + 5.0D, y + 5.0D, z + 5.0D));
             for (EntityLiving entity : entitiesWithinAABB) {
                 double dx = x - entity.posX;
                 double dy = y - entity.posY;
