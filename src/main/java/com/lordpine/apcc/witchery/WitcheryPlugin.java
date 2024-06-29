@@ -2,6 +2,7 @@ package com.lordpine.apcc.witchery;
 
 import java.util.EnumSet;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import com.emoniph.witchery.Witchery;
@@ -17,6 +18,7 @@ import com.lordpine.apcc.items.APcCItems;
 
 import Reika.ChromatiCraft.Auxiliary.ChromaStacks;
 import Reika.ChromatiCraft.Registry.ChromaBlocks;
+import Reika.ChromatiCraft.Registry.ChromaItems;
 import alkalus.main.api.RecipeManager;
 import alkalus.main.api.plugin.base.BasePluginWitchery;
 import thaumcraft.common.config.ConfigBlocks;
@@ -44,6 +46,7 @@ public class WitcheryPlugin extends BasePluginWitchery {
         registerOvenRecipes();
         registerDistilleryRecipes();
         registerRites();
+        registerCauldronRecipes();
         return true;
     }
 
@@ -135,6 +138,27 @@ public class WitcheryPlugin extends BasePluginWitchery {
         RiteRegistry.instance()
             .getRitual((byte) lastID)
             .setUnlocalizedName("apcc.rite.infusion_corrupted");
+    }
+
+    private void registerCauldronRecipes() {
+        WitcheryHelper.removeAllBrewRecipes(new ItemStack(Witchery.Items.CHALK_RITUAL));
+        WitcheryHelper.addBrewRecipe(                1000, new ItemStack(Witchery.Items.CHALK_GOLDEN),
+        new ItemStack(Witchery.Items.CHALK_RITUAL),
+        ChromaItems.CRAFTING.getCraftedMetadataProduct(1, 28), // Energetic Essence
+        new ItemStack(APcCItems.material, 1, 1)
+        );
+
+        WitcheryHelper.addBrewRecipe(                1000, new ItemStack(Witchery.Items.CHALK_INFERNAL),
+        new ItemStack(Witchery.Items.CHALK_RITUAL),
+        ChromaItems.TIERED.getCraftedMetadataProduct(1, 10), // Firaxite
+        new ItemStack(Items.blaze_powder)
+        );
+
+        WitcheryHelper.addBrewRecipe(                1000, new ItemStack(Witchery.Items.CHALK_OTHERWHERE),
+        new ItemStack(Witchery.Items.CHALK_RITUAL),
+        ChromaItems.TIERED.getCraftedMetadataProduct(1, 19), // Spatial Rifting Powder
+        new ItemStack(Witchery.Items.GENERIC, 1, 67) // Ender Dew
+        );
     }
 
 }
