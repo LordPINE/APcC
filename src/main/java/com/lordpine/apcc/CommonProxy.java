@@ -1,5 +1,6 @@
 package com.lordpine.apcc;
 
+import com.lordpine.apcc.blocks.APcCBlocks;
 import com.lordpine.apcc.items.APcCItems;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -15,6 +16,7 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         Config.synchronizeConfiguration(event.getSuggestedConfigurationFile());
 
+        APcCBlocks.preInit();
         APcCItems.preInit();
 
         APolyChromaticCore.LOG.info("I am " + Tags.MODNAME + " at version " + Tags.VERSION);
