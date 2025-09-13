@@ -11,12 +11,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import twilightforest.item.TFItems;
 
 import com.lordpine.apcc.Tags;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import twilightforest.item.TFItems;
 
 public class BlockMetalloakLeaves extends BlockLeaves {
 
