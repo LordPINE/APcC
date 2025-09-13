@@ -142,22 +142,26 @@ public class WitcheryPlugin extends BasePluginWitchery {
 
     private void registerCauldronRecipes() {
         WitcheryHelper.removeAllBrewRecipes(new ItemStack(Witchery.Items.CHALK_RITUAL));
-        WitcheryHelper.addBrewRecipe(                1000, new ItemStack(Witchery.Items.CHALK_GOLDEN),
-        new ItemStack(Witchery.Items.CHALK_RITUAL),
-        ChromaItems.CRAFTING.getCraftedMetadataProduct(1, 28), // Energetic Essence
-        new ItemStack(APcCItems.material, 1, 1)
-        );
+        WitcheryHelper.addBrewRecipe(
+            1000,
+            new ItemStack(Witchery.Items.CHALK_GOLDEN),
+            new ItemStack(Witchery.Items.CHALK_RITUAL),
+            ChromaItems.CRAFTING.getCraftedMetadataProduct(1, 28), // Energetic Essence
+            new ItemStack(APcCItems.material, 1, 1));
 
-        WitcheryHelper.addBrewRecipe(                1000, new ItemStack(Witchery.Items.CHALK_INFERNAL),
-        new ItemStack(Witchery.Items.CHALK_RITUAL),
-        ChromaItems.TIERED.getCraftedMetadataProduct(1, 10), // Firaxite
-        new ItemStack(Items.blaze_powder)
-        );
+        WitcheryHelper.addBrewRecipe(
+            1000,
+            new ItemStack(Witchery.Items.CHALK_INFERNAL),
+            new ItemStack(Witchery.Items.CHALK_RITUAL),
+            ChromaItems.TIERED.getCraftedMetadataProduct(1, 10), // Firaxite
+            new ItemStack(Items.blaze_powder));
 
-        WitcheryHelper.addBrewRecipe(                1000, new ItemStack(Witchery.Items.CHALK_OTHERWHERE),
-        new ItemStack(Witchery.Items.CHALK_RITUAL),
-        ChromaItems.TIERED.getCraftedMetadataProduct(1, 19), // Spatial Rifting Powder
-        new ItemStack(Witchery.Items.GENERIC, 1, 67) // Ender Dew
+        WitcheryHelper.addBrewRecipe(
+            1000,
+            new ItemStack(Witchery.Items.CHALK_OTHERWHERE),
+            new ItemStack(Witchery.Items.CHALK_RITUAL),
+            ChromaItems.TIERED.getCraftedMetadataProduct(1, 19), // Spatial Rifting Powder
+            new ItemStack(Witchery.Items.GENERIC, 1, 67) // Ender Dew
         );
     }
 

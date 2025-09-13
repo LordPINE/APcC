@@ -6,6 +6,8 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Hashtable;
 
+import net.minecraft.item.ItemStack;
+
 import com.emoniph.witchery.brewing.AltarPower;
 import com.emoniph.witchery.brewing.BrewItemKey;
 import com.emoniph.witchery.brewing.WitcheryBrewRegistry;
@@ -15,12 +17,12 @@ import com.emoniph.witchery.brewing.action.BrewActionRitualRecipe;
 import com.emoniph.witchery.crafting.KettleRecipes;
 import com.lordpine.apcc.APolyChromaticCore;
 
-import net.minecraft.item.ItemStack;
-
 /**
- * Shamelessly copied over from the NewHorizonsCoreMod WitcheryBrewRegistryAccessor and WitcheryPlugin classes. All credit goes to them.
+ * Shamelessly copied over from the NewHorizonsCoreMod WitcheryBrewRegistryAccessor and WitcheryPlugin classes. All
+ * credit goes to them.
  */
 public class WitcheryHelper {
+
     static final Method methodRegister;
     static final Field fieldRecipes;
     static final Hashtable<BrewItemKey, BrewAction> ingredient;
@@ -41,7 +43,8 @@ public class WitcheryHelper {
             f2 = clazz.getDeclaredField("recipes");
             f2.setAccessible(true);
         } catch (NoSuchMethodException | ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
-            APolyChromaticCore.LOG.error("Cannot find Witchery brew registry stuff. Related functionality will have no effect!", e);
+            APolyChromaticCore.LOG
+                .error("Cannot find Witchery brew registry stuff. Related functionality will have no effect!", e);
             tmp = null;
             ingredient1 = null;
             f2 = null;
@@ -75,7 +78,8 @@ public class WitcheryHelper {
 
     private static void removeAction(BrewActionRitualRecipe action) {
         ingredient.remove(action.ITEM_KEY);
-        WitcheryBrewRegistry.INSTANCE.getRecipes().remove(action);
+        WitcheryBrewRegistry.INSTANCE.getRecipes()
+            .remove(action);
     }
 
     private static BrewActionRitualRecipe.Recipe[] getRecipes(BrewActionRitualRecipe ritualRecipe) {
@@ -86,7 +90,8 @@ public class WitcheryHelper {
         }
     }
 
-    private static boolean isCauldronRecipeMatch(BrewActionRitualRecipe.Recipe recipe, ItemStack lastItem, ItemStack[] items) {
+    private static boolean isCauldronRecipeMatch(BrewActionRitualRecipe.Recipe recipe, ItemStack lastItem,
+        ItemStack[] items) {
         final ItemStack[] ingredients = recipe.ingredients;
         final int length = ingredients.length;
         if (length != items.length + 1) return false;
@@ -111,7 +116,7 @@ public class WitcheryHelper {
         return true;
     }
 
-     /**
+    /**
      * Add a brew action for given stack. This action will do nothing upon added beyond consuming alter power This is
      * necessary for an item to be able to tossed into the cauldron.
      *
@@ -143,10 +148,10 @@ public class WitcheryHelper {
         }
         if (action == null) {
             registerBrewAction(
-                    new BrewActionRitualRecipe(
-                            key,
-                            new AltarPower(power),
-                            new BrewActionRitualRecipe.Recipe(result, items)));
+                new BrewActionRitualRecipe(
+                    key,
+                    new AltarPower(power),
+                    new BrewActionRitualRecipe.Recipe(result, items)));
         } else if (action instanceof BrewActionRitualRecipe) {
             final BrewActionRitualRecipe ritualRecipe = (BrewActionRitualRecipe) action;
             final BrewActionRitualRecipe.Recipe[] old = getRecipes(ritualRecipe);
@@ -191,16 +196,19 @@ public class WitcheryHelper {
             final BrewActionRitualRecipe ritualRecipe = (BrewActionRitualRecipe) action;
             for (BrewActionRitualRecipe.Recipe recipe : ritualRecipe.getExpandedRecipes()) {
                 if (isCauldronRecipeMatch(recipe, lastItem, items)) {
-                    if (ritualRecipe.getExpandedRecipes().size() > 1) {
+                    if (ritualRecipe.getExpandedRecipes()
+                        .size() > 1) {
                         // preserve other recipes
                         modifyBrewRecipe(
-                                ritualRecipe,
-                                ritualRecipe.getExpandedRecipes().stream().filter(r -> r != recipe)
-                                        .map(
-                                                r -> new BrewActionRitualRecipe.Recipe(
-                                                        r.result,
-                                                        Arrays.copyOf(r.ingredients, r.ingredients.length - 1)))
-                                        .toArray(BrewActionRitualRecipe.Recipe[]::new));
+                            ritualRecipe,
+                            ritualRecipe.getExpandedRecipes()
+                                .stream()
+                                .filter(r -> r != recipe)
+                                .map(
+                                    r -> new BrewActionRitualRecipe.Recipe(
+                                        r.result,
+                                        Arrays.copyOf(r.ingredients, r.ingredients.length - 1)))
+                                .toArray(BrewActionRitualRecipe.Recipe[]::new));
                     } else {
                         removeAction(ritualRecipe);
                     }
@@ -209,8 +217,8 @@ public class WitcheryHelper {
             }
         }
         APolyChromaticCore.LOG.warn(
-                "There is no cauldron recipe matching these items: last: {}, rest: " + Arrays.toString(items),
-                lastItem);
+            "There is no cauldron recipe matching these items: last: {}, rest: " + Arrays.toString(items),
+            lastItem);
     }
 
     public static void removeAllKettleRecipe(ItemStack output) {
@@ -218,7 +226,8 @@ public class WitcheryHelper {
     }
 
     public static void removeRecipe(KettleRecipes.KettleRecipe recipe) {
-        if (!KettleRecipes.instance().recipes.remove(recipe)) APolyChromaticCore.LOG.warn("Recipe already removed: {}", recipe);
+        if (!KettleRecipes.instance().recipes.remove(recipe))
+            APolyChromaticCore.LOG.warn("Recipe already removed: {}", recipe);
     }
 
     private static class EmptyBrewActionModifier extends BrewActionModifier {
