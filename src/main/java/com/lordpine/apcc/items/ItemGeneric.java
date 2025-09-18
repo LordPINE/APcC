@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -15,8 +16,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import fox.spiteful.avaritia.items.ItemResource;
 import fox.spiteful.avaritia.items.LudicrousItems;
 import fox.spiteful.avaritia.render.IHaloRenderItem;
+import vazkii.botania.api.recipe.IFlowerComponent;
 
-public class ItemGeneric extends Item implements IHaloRenderItem {
+public class ItemGeneric extends Item implements IHaloRenderItem, IFlowerComponent {
 
     final int types = APcCItems.GENERIC_ITEM_NAMES.length;
     IIcon[] icons;
@@ -82,5 +84,16 @@ public class ItemGeneric extends Item implements IHaloRenderItem {
     @SideOnly(Side.CLIENT)
     public int getHaloColour(ItemStack stack) {
         return 0x33FCFC3A;
+    }
+
+    @Override
+    public boolean canFit(ItemStack stack, IInventory apothecary) {
+        int meta = stack.getItemDamage();
+        return (meta == 0 || meta == 1 || meta == 7 || meta == 8 || meta == 9);
+    }
+
+    @Override
+    public int getParticleColor(ItemStack stack) {
+        return 0xFFFFFF;
     }
 }

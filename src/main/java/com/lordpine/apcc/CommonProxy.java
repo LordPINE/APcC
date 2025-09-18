@@ -1,5 +1,8 @@
 package com.lordpine.apcc;
 
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+
 import com.lordpine.apcc.blocks.APcCBlocks;
 import com.lordpine.apcc.items.APcCItems;
 
@@ -8,6 +11,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import twilightforest.item.TFItems;
+import vazkii.botania.api.recipe.IFlowerComponent;
+import vazkii.botania.common.CustomBotaniaAPI;
 
 public class CommonProxy {
 
@@ -28,6 +34,16 @@ public class CommonProxy {
             .bus()
             .register(new APcCEventHandler());
 
+        CustomBotaniaAPI.extraFlowerComponents.put(TFItems.steeleafIngot, new IFlowerComponent() {
+
+            public boolean canFit(ItemStack stack, IInventory apothecary) {
+                return true;
+            }
+
+            public int getParticleColor(ItemStack stack) {
+                return 0x06441D;
+            }
+        });
         APolyChromaticCore.LOG.info("Done initializing APcC!");
     }
 
