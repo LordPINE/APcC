@@ -1,0 +1,2 @@
+dimensional_essence: TextureRepository/futureazoo
+godsoul_matrix: unused-textures

@@ -20,6 +20,9 @@ item.chaos_ichor.name=Chaos-Blended Ichor
 item.creative_node.name=Creative Node
 item.divine_spark.name=Spark of the Divine
 item.nugget_shadowmetal.name=Shadowmetal Nugget
+item.dimensional_essence.name=Essence Of Many Worlds
+item.godsoul_matrix.name=God-Soul Matrix
+item.theophilic_blood.name=Theophilic Blood
 
 apcc.rite.summon_voidmonster=R§ki§r§nte §ko§r§nf Vo§ki§r§nd§k's§r§n Co§krru§r§np§kti§r§non§r
 apcc.rite.infusion_corrupted=Ri§kt§r§ne of In§kf§r§nusi§ko§r§nn§r
