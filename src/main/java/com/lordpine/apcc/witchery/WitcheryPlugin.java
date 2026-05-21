@@ -4,6 +4,7 @@ import java.util.EnumSet;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 
 import com.emoniph.witchery.Witchery;
 import com.emoniph.witchery.infusion.Infusion;
@@ -21,6 +22,7 @@ import Reika.ChromatiCraft.Registry.ChromaBlocks;
 import Reika.ChromatiCraft.Registry.ChromaItems;
 import alkalus.main.api.RecipeManager;
 import alkalus.main.api.plugin.base.BasePluginWitchery;
+import alkalus.main.core.crafting.OvenRecipes;
 import thaumcraft.common.config.ConfigBlocks;
 
 public class WitcheryPlugin extends BasePluginWitchery {
@@ -57,32 +59,24 @@ public class WitcheryPlugin extends BasePluginWitchery {
 
     private void registerOvenRecipes() {
         // Greatwood and Silverwood -> Whiff of Magic
-        RecipeManager.WitchesOven.addRecipe(
+        OvenRecipes.addRecipe(
             new ItemStack(ConfigBlocks.blockCustomPlant, 1),
-            null,
             1,
-            Witchery.Items.GENERIC.itemAshWood.createStack(),
-            1,
-            Witchery.Items.GENERIC.itemWhiffOfMagic.createStack(),
-            1);
-        RecipeManager.WitchesOven.addRecipe(
+            Witchery.Items.GENERIC.itemAshWood.createStack(1),
+            Witchery.Items.GENERIC.itemWhiffOfMagic.createStack(1));
+        OvenRecipes.addRecipe(
             new ItemStack(ConfigBlocks.blockCustomPlant, 1, 1),
-            null,
             1,
-            Witchery.Items.GENERIC.itemAshWood.createStack(),
-            1,
-            Witchery.Items.GENERIC.itemWhiffOfMagic.createStack(),
-            1);
+            Witchery.Items.GENERIC.itemAshWood.createStack(1),
+            Witchery.Items.GENERIC.itemWhiffOfMagic.createStack(1));
 
         // Rainbow Sapling -> Chromatic Essence
-        RecipeManager.WitchesOven.addRecipe(
+        OvenRecipes.addRecipe(
             new ItemStack(ChromaBlocks.RAINBOWSAPLING.getItem(), 1),
-            null,
             1,
-            Witchery.Items.GENERIC.itemAshWood.createStack(),
-            1,
-            new ItemStack(APcCItems.material, 1, 0),
-            1);
+            Witchery.Items.GENERIC.itemAshWood.createStack(1),
+            new ItemStack(APcCItems.material, 1, 0));
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ChromaBlocks.RAINBOWSAPLING.getItem(), 1), Witchery.Items.GENERIC.itemAshWood.createStack(), 0);
     }
 
     private void registerDistilleryRecipes() {
