@@ -35,8 +35,8 @@
  */
 dependencies {
     // Actual mod deps
-    implementation("com.github.GTNewHorizons:waila:1.19.28:dev") {transitive = false }
-    api("com.github.GTNewHorizons:Baubles-Expanded:2.2.19-GTNH:dev") {transitive = false}
+    implementation("com.github.GTNewHorizons:waila:1.19.29:dev") {transitive = false }
+    api("com.github.GTNewHorizons:Baubles-Expanded:2.2.21-GTNH:dev") {transitive = false}
     implementation("com.github.GTNewHorizons:Avaritia:1.97:dev") { transitive = false }
     implementation("com.github.GTNewHorizons:WitcheryExtras:1.4.15:dev") { transitive = false }
     implementation(rfg.deobf("curse.maven:witchery-69673:2234410")) { transitive = false }
