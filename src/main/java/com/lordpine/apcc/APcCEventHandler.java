@@ -52,7 +52,7 @@ public final class APcCEventHandler {
                                             (int) Math.floor(entity.posY),
                                             (int) Math.floor(entity.posZ),
                                             Blocks.air);
-                                        item.setEntityItemStack(new ItemStack(APcCItems.material, 1, 21));
+                                        item.setEntityItemStack(new ItemStack(APcCItems.material, 1, 20));
                                     }
                                 }
                             }
