@@ -15,15 +15,18 @@ import com.emoniph.witchery.ritual.SacrificeItem;
 import com.emoniph.witchery.ritual.SacrificeMultiple;
 import com.emoniph.witchery.ritual.SacrificePower;
 import com.emoniph.witchery.ritual.rites.RiteInfusePlayers;
+import com.emoniph.witchery.ritual.rites.RiteSummonItem;
 import com.lordpine.apcc.items.APcCItems;
 
 import Reika.ChromatiCraft.Auxiliary.ChromaStacks;
 import Reika.ChromatiCraft.Registry.ChromaBlocks;
 import Reika.ChromatiCraft.Registry.ChromaItems;
+import Reika.DragonAPI.Libraries.Registry.ReikaItemHelper;
 import alkalus.main.api.RecipeManager;
 import alkalus.main.api.plugin.base.BasePluginWitchery;
 import alkalus.main.core.crafting.OvenRecipes;
 import thaumcraft.common.config.ConfigBlocks;
+import thaumcraft.common.config.ConfigItems;
 
 public class WitcheryPlugin extends BasePluginWitchery {
 
@@ -76,7 +79,11 @@ public class WitcheryPlugin extends BasePluginWitchery {
             1,
             Witchery.Items.GENERIC.itemAshWood.createStack(1),
             new ItemStack(APcCItems.material, 1, 0));
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ChromaBlocks.RAINBOWSAPLING.getItem(), 1), Witchery.Items.GENERIC.itemAshWood.createStack(), 0);
+        FurnaceRecipes.smelting()
+            .func_151394_a(
+                new ItemStack(ChromaBlocks.RAINBOWSAPLING.getItem(), 1),
+                Witchery.Items.GENERIC.itemAshWood.createStack(),
+                0);
     }
 
     private void registerDistilleryRecipes() {
@@ -132,6 +139,23 @@ public class WitcheryPlugin extends BasePluginWitchery {
         RiteRegistry.instance()
             .getRitual((byte) lastID)
             .setUnlocalizedName("apcc.rite.infusion_corrupted");
+        RecipeManager.RitesAndRituals.add(
+            ++lastID,
+            lastID + 100,
+            new RiteSummonItem(new ItemStack(APcCItems.material, 1, 22), RiteSummonItem.Binding.NONE),
+            new SacrificeMultiple(
+                new SacrificeItem(
+                    new ItemStack(ConfigItems.itemEldritchObject, 1, 3),
+                    new ItemStack(APcCItems.material, 1, 2),
+                    ChromaStacks.bedrockloot2,
+                    ReikaItemHelper.lookupItem("ThaumicTinkerer:kamiResource:6"),
+                    ReikaItemHelper.lookupItem("ThaumicTinkerer:kamiResource:7")),
+                new SacrificePower(12000, 20)),
+            EnumSet.noneOf(RitualTraits.class),
+            new Circle[] { new Circle(0, 16, 0), new Circle(28, 0, 0), new Circle(0, 0, 40)  });
+        RiteRegistry.instance()
+            .getRitual((byte) lastID)
+            .setUnlocalizedName("apcc.rite.dimensional_essence_binding");
     }
 
     private void registerCauldronRecipes() {

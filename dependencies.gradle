@@ -45,6 +45,7 @@ dependencies {
     api("com.github.GTNewHorizons:BloodMagic:1.9.3:dev") { transitive = false }
     implementation("com.github.GTNewHorizons:ForgeMultipart:1.7.10:dev") { transitive = false }
     api("com.github.GTNewHorizons:twilightforest:2.7.32:dev") {transitive = false}
+    api("com.github.GTNewHorizons:ThaumicTinkerer:2.12.22:dev") {transitive = false}
 
     // Reika's Mods + ALL THE DEPS
     runtimeOnly("appeng:appliedenergistics2:rv3-beta-6:dev")
