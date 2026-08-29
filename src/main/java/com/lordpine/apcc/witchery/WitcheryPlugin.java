@@ -152,7 +152,7 @@ public class WitcheryPlugin extends BasePluginWitchery {
                     ReikaItemHelper.lookupItem("ThaumicTinkerer:kamiResource:7")),
                 new SacrificePower(12000, 20)),
             EnumSet.noneOf(RitualTraits.class),
-            new Circle[] { new Circle(0, 16, 0), new Circle(28, 0, 0), new Circle(0, 0, 40)  });
+            new Circle[] { new Circle(0, 16, 0), new Circle(28, 0, 0), new Circle(0, 0, 40) });
         RiteRegistry.instance()
             .getRitual((byte) lastID)
             .setUnlocalizedName("apcc.rite.dimensional_essence_binding");
