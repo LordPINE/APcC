@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -95,5 +96,35 @@ public class ItemGeneric extends Item implements IHaloRenderItem, IFlowerCompone
     @Override
     public int getParticleColor(ItemStack stack) {
         return 0xFFFFFF;
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        int meta = stack.getItemDamage();
+        if (meta == 0 || meta == 1
+            || meta == 2
+            || meta == 3
+            || meta == 10
+            || meta == 12
+            || meta == 13
+            || meta == 14
+            || meta == 15
+            || meta == 16
+            || meta == 17) return EnumRarity.common;
+        if (meta == 5 || meta == 7 || meta == 11 || meta == 21) return EnumRarity.uncommon;
+        if (meta == 8) return EnumRarity.rare;
+        if (meta == 4 || meta == 6
+            || meta == 9
+            || meta == 18
+            || meta == 19
+            || meta == 20
+            || meta == 22
+            || meta == 23
+            || meta == 24
+            || meta == 25
+            || meta == 26
+            || meta == 27) return EnumRarity.epic;
+
+        return EnumRarity.common;
     }
 }
