@@ -11,7 +11,7 @@ public class APcCItems {
         "rune_seasons", "rune_sin", "thaumium_gear_inert", "magical_base_alloy", "orb_frame_1", "orb_frame_2",
         "orb_frame_3", "orb_frame_4", "orb_frame_5", "orb_frame_6", "chaos_ichor", "creative_node", "divine_spark",
         "nugget_shadowmetal", "dimensional_essence", "godsoul_matrix", "theophilic_blood", "temporal_pearl",
-        "fractured_mind" };
+        "fractured_mind", "primordial_slurry" };
     public static final String[] ULTIMATE_ESSENCE_NAMES = { "ultimate_essence_kuro", "ultimate_essence_karmir",
         "ultimate_essence_kijani", "ultimate_essence_ruskea", "ultimate_essence_nila", "ultimate_essence_zambarau",
         "ultimate_essence_vadali", "ultimate_essence_argia", "ultimate_essence_ykri", "ultimate_essence_ruzova",
